@@ -1,15 +1,16 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import logo from "../../assets/logo.png"
 const Headers = () => {
     const navItems =
         <>
-            <li><a>Home</a></li>
-            <li><a>Todos</a></li>
+            <li className='bg-teal-400 rounded-lg'><a>Home</a></li>
+            <li className='bg-teal-400 rounded-lg'><a>Todos</a></li>
         </>
     return (
-        <nav>
+        <nav className='bg-teal-50'>
             <div className="container mx-auto">
-                <div className="navbar bg-base-100">
+                <div className="navbar">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -19,15 +20,17 @@ const Headers = () => {
                                 {navItems}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost text-xl">daisyUI</a>
+                        <Link className='w-40' to="/">
+                            <img src={logo} alt="" />
+                        </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1">
+                        <ul className="menu menu-horizontal px-1 gap-3 text-white font-semibold">
                             {navItems}
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <a className="btn">Dashboard</a>
+                        <Link to="" className="btn px-2 bg-teal-500 text-white py-1 hover:bg-teal-700">Dashboard</Link>
                     </div>
                 </div>
             </div>
