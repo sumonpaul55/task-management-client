@@ -5,6 +5,11 @@ import {
 import Mainlayout from "../layOut/Mainlayout";
 import Home from "../page/home/Home";
 import Register from "../page/register/Register";
+import Dashboard from "../layOut/Dashboard";
+import Profile from "../page/dashboard/profile/Profile";
+import MyTodos from "../page/dashboard/myTodos/MyTodos";
+import AllUsers from "../page/dashboard/allUsers/AllUsers";
+import AddTodos from "../page/dashboard/addTodos/AddTodos";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +23,33 @@ const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register></Register>
+            }
+            ,
+            {
+                path: "login",
+                element: <Register></Register>
+            }
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "profile",
+                element: <Profile></Profile>
+            },
+            {
+                path: "mytodos",
+                element: <MyTodos></MyTodos>
+            },
+            {
+                path: "allUsers",
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: "addtodos",
+                element: <AddTodos></AddTodos>
             }
         ]
     }

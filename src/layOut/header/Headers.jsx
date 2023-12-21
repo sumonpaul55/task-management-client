@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png"
+import { UserContext } from '../../shared/AuthContext';
+import { toast } from 'react-toastify';
 const Headers = () => {
+    const { user } = useContext(UserContext)
+    const { logOut } = useContext(UserContext)
+    const handleLogout = () => {
+        logOut().then(res => {
+            res && toast(`You have logedout Successfully`)
+        })
+    }
     const navItems =
         <>
             <li className='bg-teal-500 rounded-lg'><Link to="/">Home</Link></li>
@@ -30,8 +39,21 @@ const Headers = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link to="" className="px-2 rounded-lg bg-teal-500 text-white py-1 hover:bg-teal-700">Dashboard</Link>
+                        <Link to="dashboard" className="px-2 rounded-lg bg-teal-500 text-white py-1 hover:bg-teal-700">Dashboard</Link>
                     </div>
+
+                    {
+                        user ? <>
+                            <div className='ml-3 relative'>
+                                <img src={user?.photoURL} className='w-14 h-14 rounded-full' alt="" />
+                                <div className='p-4 bg-slate-400 absolute top-16 -left-3'>
+                                    <button className='whitespace-nowrap' onClick={handleLogout}>Log Out</button>
+                                </div>
+                            </div>
+                        </> :
+                            <Link to="/login" className='mx-3 font-bold bg-teal-500 text-white px-2 py-1 rounded-md'>Login</Link>
+
+                    }
                 </div>
             </div>
         </nav>
