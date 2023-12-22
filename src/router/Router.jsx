@@ -8,7 +8,7 @@ import Register from "../page/register/Register";
 import Dashboard from "../layOut/Dashboard";
 import Profile from "../page/dashboard/profile/Profile";
 import MyTodos from "../page/dashboard/myTodos/MyTodos";
-import AllUsers from "../page/dashboard/allUsers/AllUsers";
+import AllUsers from "../page/dashboard/allUsers/Alltodos";
 import AddTodos from "../page/dashboard/addTodos/AddTodos";
 import Login from "../page/login/Login";
 import PrivateRoute from "./PrivetRoute";
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element: <MyTodos></MyTodos>
             },
             {
-                path: "allUsers",
+                path: "alltodos",
                 element: <AllUsers></AllUsers>
             },
             {

@@ -10,7 +10,7 @@ function AddTodos() {
     const { user } = useContext(UserContext)
 
     const onSubmit = async (data) => {
-        const todos = { ...data, email: user?.email }
+        const todos = { ...data, email: user?.email, status: "ongoing" }
         axiosPublic.post("/add-todos", todos)
             .then(res => {
                 if (res.data.insertedId) {

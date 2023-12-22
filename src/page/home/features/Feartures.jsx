@@ -2,10 +2,10 @@ import React from 'react'
 
 function Feartures() {
     return (
-        <section className='py-32 bg-slate-200'>
+        <section className='py-32 bg-slate-200 px-2'>
             <div className="container mx-auto">
                 <h1 className='font-bold text-xl md:text-2xl lg:text-3xl md:mx-20'>Key Features</h1>
-                <div className=' mt-10 mx-2 md:mx-20'>
+                <div className=' mt-10 md:mx-20'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10'>
                         <div className='bg-white py-7 rounded-md p-5' data-aos="fade-right">
                             <h2 className='font-bold text-xl'>Streamlined and user-friendly </h2>

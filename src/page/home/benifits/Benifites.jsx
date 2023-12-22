@@ -6,7 +6,7 @@ import { BiAccessibility } from "react-icons/bi";
 
 function Benifites() {
     return (
-        <section className='py-32'>
+        <section className='py-32 px-2'>
             <div className="container mx-auto">
                 <h1 className='font-bold text-xl md:text-2xl lg:text-3xl'>Type of todos</h1>
                 <div className='mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
