@@ -1,0 +1,5 @@
+.whouse {
+    background: linear-gradient(rgba(4, 4, 4, 0.60), rgba(0, 0, 0, 0.60)), url("../../../assets/whouse.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

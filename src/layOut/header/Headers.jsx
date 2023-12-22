@@ -23,6 +23,7 @@ const Headers = () => {
         <>
             <li className='bg-teal-500 rounded-lg'><Link to="/">Home</Link></li>
             <li className='bg-teal-500 rounded-lg'><Link to="">Todos</Link></li>
+            <li className='bg-teal-500 rounded-lg'><Link to="">About</Link></li>
         </>
     return (
         <nav className='bg-teal-50'>
@@ -46,14 +47,16 @@ const Headers = () => {
                             {navItems}
                         </ul>
                     </div>
-                    <div className="navbar-end">
-                        <Link to="dashboard" className="px-2 rounded-lg bg-teal-500 text-white py-1 hover:bg-teal-700">Dashboard</Link>
-                    </div>
+                    {user &&
+                        <div className="navbar-end">
+                            <Link to="dashboard" className="px-2 rounded-lg bg-teal-500 text-white py-1 hover:bg-teal-700">Dashboard</Link>
+                        </div>
+                    }
 
                     {
                         user ? <>
                             <div className='ml-3 relative'>
-                                <img onClick={handleToggle} src={user?.photoURL} className='w-14 cursor-pointer h-14 rounded-full' alt="" referrerPolicy='no-referrer' />
+                                <img onClick={handleToggle} src={user?.photoURL} className='w-16 block cursor-pointer h-12 rounded-full' alt="" referrerPolicy='no-referrer' />
                                 {showtoggle &&
                                     <div className='p-4 bg-slate-400 absolute top-16 -left-3'>
                                         <button className='whitespace-nowrap font-bold' onClick={handleLogout}>Log Out</button>

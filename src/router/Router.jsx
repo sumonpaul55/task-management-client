@@ -11,6 +11,7 @@ import MyTodos from "../page/dashboard/myTodos/MyTodos";
 import AllUsers from "../page/dashboard/allUsers/AllUsers";
 import AddTodos from "../page/dashboard/addTodos/AddTodos";
 import Login from "../page/login/Login";
+import PrivateRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: "profile",

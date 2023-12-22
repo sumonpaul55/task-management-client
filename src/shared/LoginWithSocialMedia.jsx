@@ -4,10 +4,13 @@ import { FaGoogle } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import useAxios from '../hooks/useAxios';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const LoginWithSocialMedia = () => {
     const { loginWithGoogle, loginWithFacebook } = useContext(UserContext)
     const axiosPublic = useAxios()
+    const location = useLocation();
+    const navigate = useNavigate()
     // console.log(axiosPublic)
     // login with google
     const googleLogin = () => {
@@ -23,7 +26,7 @@ const LoginWithSocialMedia = () => {
                     .then(res => {
                         if (res.data.insertedId) {
                             // console.log("inside new", res)
-                            toast(`Welcome ${name} to join us`, {
+                            toast(`Welcome to join us`, {
                                 autoClose: 2000,
                                 position: "bottom-right"
                             })
@@ -36,6 +39,7 @@ const LoginWithSocialMedia = () => {
                     }).catch(err => {
                         toast(err)
                     })
+                navigate(location?.state ? location?.state : "/")
             }).catch(err => {
                 toast(err, {
                     position: "bottom-right",

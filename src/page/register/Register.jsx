@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import MyHelmet from '../../shared/MyHelmet';
 import Loading from '../../shared/Loading';
 import LoginWithSocialMedia from '../../shared/LoginWithSocialMedia';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../shared/AuthContext';
 import { updateProfile } from 'firebase/auth';
 import useAxios from '../../hooks/useAxios';
@@ -18,15 +18,17 @@ const Register = () => {
     const [showPass, setShowPass] = useState(false)
     const [processing, setProcessing] = useState(false)
     const { register: registerNow } = useContext(UserContext)
-    const { register, handleSubmit, formState: { errors } } = useForm()
-
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const location = useLocation()
+    const axiosPublic = useAxios();
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         const imagefile = data.image[0]
         const name = data.name;
         const email = data.email
         const password = data.password
         const profession = data.profession
-        const axiosPublic = useAxios;
+
         const formData = new FormData()
         formData.append("key", imageAPI)
         formData.append("image", imagefile)
@@ -42,20 +44,20 @@ const Register = () => {
                 }
                 registerNow(email, password)
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
                         const user = res.user;
                         updateProfile(user, {
                             displayName: name,
                             photoURL: photoUrl
                         })
-                        if (res.operationType) {
-                            axiosPublic.post("/login", userInfo)
-                                .then(res => {
-                                    toast(res.data)
-                                }).catch(err => {
-                                    toast(err)
-                                })
-                        }
+                        axiosPublic.post("/login", userInfo)
+                            .then(res => {
+                                res && toast(`welcome ${name}`)
+
+                            }).catch(err => {
+                                toast(err)
+                            })
+                        navigate(location?.state ? location.state : "/")
                     }).catch(error => {
                         // console.log(error)
                         toast(error)
@@ -74,6 +76,7 @@ const Register = () => {
                 position: 'bottom-right'
             })
         }
+        reset()
     }
     return (
         <>
