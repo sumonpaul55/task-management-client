@@ -27,7 +27,6 @@ const Register = () => {
         const password = data.password
         const profession = data.profession
         const axiosPublic = useAxios;
-
         const formData = new FormData()
         formData.append("key", imageAPI)
         formData.append("image", imagefile)
@@ -57,14 +56,10 @@ const Register = () => {
                                     toast(err)
                                 })
                         }
-
                     }).catch(error => {
                         // console.log(error)
                         toast(error)
                     })
-
-
-
 
                 setProcessing(false)
                 toast(`You have succefully registered ${name}`, {

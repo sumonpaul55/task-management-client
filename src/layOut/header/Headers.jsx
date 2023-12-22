@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png"
 import { UserContext } from '../../shared/AuthContext';
@@ -6,11 +6,19 @@ import { toast } from 'react-toastify';
 const Headers = () => {
     const { user } = useContext(UserContext)
     const { logOut } = useContext(UserContext)
+    const [showtoggle, setShowtoggle] = useState(false)
     const handleLogout = () => {
         logOut().then(res => {
             res && toast(`You have logedout Successfully`)
         })
     }
+    const handleToggle = (e) => {
+        e.stopPropagation();
+        setShowtoggle(!showtoggle)
+    }
+    document.body.addEventListener("click", () => {
+        setShowtoggle(false)
+    })
     const navItems =
         <>
             <li className='bg-teal-500 rounded-lg'><Link to="/">Home</Link></li>
@@ -45,10 +53,13 @@ const Headers = () => {
                     {
                         user ? <>
                             <div className='ml-3 relative'>
-                                <img src={user?.photoURL} className='w-14 h-14 rounded-full' alt="" />
-                                <div className='p-4 bg-slate-400 absolute top-16 -left-3'>
-                                    <button className='whitespace-nowrap' onClick={handleLogout}>Log Out</button>
-                                </div>
+                                <img onClick={handleToggle} src={user?.photoURL} className='w-14 cursor-pointer h-14 rounded-full' alt="" referrerPolicy='no-referrer' />
+                                {showtoggle &&
+                                    <div className='p-4 bg-slate-400 absolute top-16 -left-3'>
+                                        <button className='whitespace-nowrap font-bold' onClick={handleLogout}>Log Out</button>
+                                    </div>
+                                }
+
                             </div>
                         </> :
                             <Link to="/login" className='mx-3 font-bold bg-teal-500 text-white px-2 py-1 rounded-md'>Login</Link>

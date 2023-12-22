@@ -10,6 +10,7 @@ import Profile from "../page/dashboard/profile/Profile";
 import MyTodos from "../page/dashboard/myTodos/MyTodos";
 import AllUsers from "../page/dashboard/allUsers/AllUsers";
 import AddTodos from "../page/dashboard/addTodos/AddTodos";
+import Login from "../page/login/Login";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
             ,
             {
                 path: "login",
-                element: <Register></Register>
+                element: <Login></Login>
             }
         ]
     },

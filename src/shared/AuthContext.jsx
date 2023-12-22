@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createContext, useState } from 'react';
 import app from '../../firebase.config';
-import { FacebookAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 // import useAxios from '../hooks/useAxios';
 
 // getting auth
@@ -30,6 +30,9 @@ const AuthContext = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+    const logIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
     const logOut = () => {
         return signOut(auth)
     }
@@ -42,15 +45,14 @@ const AuthContext = ({ children }) => {
             unSubcribe();
         }
     }, [])
-
-
     const userInfo = {
         user,
         loading,
         register,
         loginWithGoogle,
         logOut,
-        loginWithFacebook
+        loginWithFacebook,
+        logIn
     }
 
 

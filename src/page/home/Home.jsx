@@ -1,11 +1,10 @@
 import React from 'react';
+import Banner from './banner/Banner';
 
 const Home = () => {
     return (
         <main className='min-h-screen'>
-            <div className="container mx-auto">
-                home
-            </div>
+            <Banner></Banner>
         </main>
     );
 };
